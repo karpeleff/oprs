@@ -33,6 +33,7 @@
                 {{type_select}}
 
                 <br>
+               
                 <br>
                 <button v-on:click="send_data" type="button" class="btn btn-success" >Сохранить </button>
                 <button v-on:click="clear_data"  class="btn btn-info"  >Очистить</button>
@@ -49,11 +50,14 @@
 
     Settings.defaultLocale = 'ru';
 
-
-
-
     //Vue.use(Datetime)
     Vue.component('datetime', Datetime);
+
+///////
+
+
+
+
     export default {
         data: function () {
             return {
@@ -66,7 +70,7 @@
         },
         methods:{
             send_data: function (){
-                axios.post('des/add_work_time', {
+                axios.post('des/add_time', {
                     date_start:  this.date_start ,
                     date_stop:   this.date_stop,
                     des_select:  this.des_select,
@@ -87,10 +91,15 @@
                      this.date_stop   = '',
                      this.des_select  = '',
                      this.type_select = ''
-            }
+            },
+            
 
 
-        }
+        },
+        mounted() {
+          
+        },
+        
     }
 
 </script>

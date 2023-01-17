@@ -3,7 +3,7 @@
 @section('content')
 
         <div class="container-lg">
-          фавип
+          <test></test>
         </div>
     
 @endsection

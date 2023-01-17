@@ -30,4 +30,14 @@ class HomeController extends Controller
     {
         return view('des');
     }
+
+    public  function add_time(Request $request)
+    {
+
+       // dd($request);
+
+        $data = WorkTime::create($request->all());
+        return $data;
+    }
+
 }
