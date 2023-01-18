@@ -3,14 +3,14 @@
         <div class="row justify-content-center">
             <div>
                 <label>Время пуска</label>
-                <datetime type="datetime"  v-model="date_start"  input-class="form-control  m-3" ></datetime>
+                <datetime type="datetime"  v-model="content.date_start"  input-class="form-control  m-3" ></datetime>
                 <label>Время останова</label>
-                <datetime type="datetime"  v-model="date_stop"  input-class="form-control m-3" ></datetime>
+                <datetime type="datetime"  v-model="content.date_stop"  input-class="form-control m-3" ></datetime>
                
 
                 <label>Выбрать ДГУ</label>
               
-                <select class="form-select m-3 " aria-label=""  v-model="des_select" >
+                <select class="form-select m-3 " aria-label=""  v-model="content.des_select" >
                   
                     <option value="ADR16">ADR16</option>
                     <option value="SD6000E">SD6000E</option>
@@ -18,19 +18,19 @@
                   </select>
                
                 <label  class="" >Выбрать тип запуска</label>
-                <select class="form-select m-3" aria-label=""  v-model="type_select">
+                <select class="form-select m-3" aria-label=""  v-model="content.type_select">
                     <option value="Контрольный пуск">Контрольный пуск</option>
                     <option value="Авария промсети">Авария промсети</option>
                     <option value="Плановое отключение промсети">Плановое отключение промсети</option>
                 </select>
                
-                {{date_start}}
+                {{content.date_start}}
                 <br>
-                {{date_stop}}
+                {{content.date_stop}}
                 <br>
-                {{des_select}}
+                {{content.des_select}}
                 <br>
-                {{type_select}}
+                {{content.type_select}}
 
                 <br>
                
@@ -61,25 +61,25 @@
     export default {
         data: function () {
             return {
-                date_start: '',
+                content: {
+                 date_start: '',
                 date_stop: '',
                 des_select: '',
-                type_select: ''
+                type_select: ''   
+                }
+                
 
             }
         },
         methods:{
             send_data: function (){
                 axios.post('des/add_time', {
-                    date_start:  this.date_start ,
-                    date_stop:   this.date_stop,
-                    des_select:  this.des_select,
-                    type_select: this.type_select
-
+                    content: this.content
+                 
                 })
                     .then(function (response) {
                         //console.log(response);
-                        alert('Данные добавлены в базу');
+                        alert(response.data);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -87,10 +87,10 @@
             },
 
             clear_data: function () {
-                     this.date_start  = '',
-                     this.date_stop   = '',
-                     this.des_select  = '',
-                     this.type_select = ''
+                     this.content.date_start  = '',
+                     this.content.date_stop   = '',
+                     this.content.des_select  = '',
+                     this.content.type_select = ''
             },
             
 

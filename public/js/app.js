@@ -5376,28 +5376,27 @@ Vue.component('datetime', vue_datetime__WEBPACK_IMPORTED_MODULE_0__.Datetime);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      date_start: '',
-      date_stop: '',
-      des_select: '',
-      type_select: ''
+      content: {
+        date_start: '',
+        date_stop: '',
+        des_select: '',
+        type_select: ''
+      }
     };
   },
   methods: {
     send_data: function send_data() {
       axios.post('des/add_time', {
-        date_start: this.date_start,
-        date_stop: this.date_stop,
-        des_select: this.des_select,
-        type_select: this.type_select
+        content: this.content
       }).then(function (response) {
         //console.log(response);
-        alert('Данные добавлены в базу');
+        alert(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     clear_data: function clear_data() {
-      this.date_start = '', this.date_stop = '', this.des_select = '', this.type_select = '';
+      this.content.date_start = '', this.content.date_stop = '', this.content.des_select = '', this.content.type_select = '';
     }
   },
   mounted: function mounted() {}
@@ -42213,11 +42212,11 @@ var render = function () {
           _c("datetime", {
             attrs: { type: "datetime", "input-class": "form-control  m-3" },
             model: {
-              value: _vm.date_start,
+              value: _vm.content.date_start,
               callback: function ($$v) {
-                _vm.date_start = $$v
+                _vm.$set(_vm.content, "date_start", $$v)
               },
-              expression: "date_start",
+              expression: "content.date_start",
             },
           }),
           _vm._v(" "),
@@ -42226,11 +42225,11 @@ var render = function () {
           _c("datetime", {
             attrs: { type: "datetime", "input-class": "form-control m-3" },
             model: {
-              value: _vm.date_stop,
+              value: _vm.content.date_stop,
               callback: function ($$v) {
-                _vm.date_stop = $$v
+                _vm.$set(_vm.content, "date_stop", $$v)
               },
-              expression: "date_stop",
+              expression: "content.date_stop",
             },
           }),
           _vm._v(" "),
@@ -42243,8 +42242,8 @@ var render = function () {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.des_select,
-                  expression: "des_select",
+                  value: _vm.content.des_select,
+                  expression: "content.des_select",
                 },
               ],
               staticClass: "form-select m-3",
@@ -42259,9 +42258,11 @@ var render = function () {
                       var val = "_value" in o ? o._value : o.value
                       return val
                     })
-                  _vm.des_select = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
+                  _vm.$set(
+                    _vm.content,
+                    "des_select",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
                 },
               },
             },
@@ -42283,8 +42284,8 @@ var render = function () {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.type_select,
-                  expression: "type_select",
+                  value: _vm.content.type_select,
+                  expression: "content.type_select",
                 },
               ],
               staticClass: "form-select m-3",
@@ -42299,9 +42300,11 @@ var render = function () {
                       var val = "_value" in o ? o._value : o.value
                       return val
                     })
-                  _vm.type_select = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
+                  _vm.$set(
+                    _vm.content,
+                    "type_select",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
                 },
               },
             },
@@ -42323,16 +42326,22 @@ var render = function () {
           ),
           _vm._v(
             "\n           \n            " +
-              _vm._s(_vm.date_start) +
+              _vm._s(_vm.content.date_start) +
               "\n            "
           ),
           _c("br"),
-          _vm._v("\n            " + _vm._s(_vm.date_stop) + "\n            "),
-          _c("br"),
-          _vm._v("\n            " + _vm._s(_vm.des_select) + "\n            "),
+          _vm._v(
+            "\n            " + _vm._s(_vm.content.date_stop) + "\n            "
+          ),
           _c("br"),
           _vm._v(
-            "\n            " + _vm._s(_vm.type_select) + "\n\n            "
+            "\n            " + _vm._s(_vm.content.des_select) + "\n            "
+          ),
+          _c("br"),
+          _vm._v(
+            "\n            " +
+              _vm._s(_vm.content.type_select) +
+              "\n\n            "
           ),
           _c("br"),
           _vm._v(" "),

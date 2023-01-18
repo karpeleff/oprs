@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\WorkTime;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -34,10 +36,19 @@ class HomeController extends Controller
     public  function add_time(Request $request)
     {
 
-       // dd($request);
+     //dd($request);
+       //Log::alert($request);
 
-        $data = WorkTime::create($request->all());
-        return $data;
+       // $data = WorkTime::create($request->all());
+       // return $data;
+
+       $data = new WorkTime;
+      // $data->payload = $request->content;
+       $data->payload = serialize($request->content);
+       $data->save();
+
+       return response('Данные добавлены в базу успешно' , 200);
+
     }
 
 }
