@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WorkTime;
 use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -30,6 +31,8 @@ class HomeController extends Controller
 
     public function des()
     {
+
+        Alert::alert('Title', 'Message', 'Type');
         return view('des');
     }
 

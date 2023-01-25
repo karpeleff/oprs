@@ -167,6 +167,7 @@
           </ul>
         </div>
         <div class="header-divider"></div>
+        @include('sweetalert::alert')
         <div class="container-fluid">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb my-0 ms-2">
