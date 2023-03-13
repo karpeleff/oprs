@@ -25,7 +25,9 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('engine_time', require('./components/EngineComponent.vue').default);
-Vue.component('test', require('./components/ExampleComponent.vue').default);
+Vue.component('test',        require('./components/ExampleComponent.vue').default);
+Vue.component('gaz_in',      require('./components/GazInComponent.vue').default);
+Vue.component('note',        require('./components/NoteComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,3 +39,6 @@ const app = new Vue({
     el: '#app',
 });
 
+
+//import AirDatepicker from 'air-datepicker';
+//import 'air-datepicker/air-datepicker.css';

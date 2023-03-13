@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "nesbot/carbon": "^2.66",
         "phpoffice/phpspreadsheet": "^1.25",
         "phpoffice/phpword": "^1.0",
         "realrashid/sweet-alert": "^5.1"

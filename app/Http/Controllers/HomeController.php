@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\WorkTime;
 use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Gaz;
+use  App\Models\Diesel;
 
 class HomeController extends Controller
 {
@@ -31,8 +33,14 @@ class HomeController extends Controller
 
     public function des()
     {
+// example:
+          // toast('Signed in successfully','success')->timerProgressBar();
+          // example:
+          //alert()->success('SuccessAlert','Lorem ipsum dolor sit amet.')->persistent(true,true);
 
-        Alert::alert('Title', 'Message', 'Type');
+         // toast('Post Updated','success','top-right')->showCloseButton();
+      //  Alert::alert('Текущий остаток дизтоплива', '338,37 л', 'Type');
+      Alert::info('Текущий остаток дизтоплива', '338,37 л');
         return view('des');
     }
 
@@ -46,12 +54,86 @@ class HomeController extends Controller
        // return $data;
 
        $data = new WorkTime;
-      // $data->payload = $request->content;
+    
        $data->payload = serialize($request->content);
        $data->save();
 
        return response('Данные добавлены в базу успешно' , 200);
 
     }
+
+    public function   gaz_in()
+    {
+        return view('gaz_in');
+    }
+
+    public function   diesel_in()
+    {
+        return view('diesel_in');
+    }
+
+    public function   gaz_del(Request $request)
+    {
+
+//dd($request);
+
+if($request->type === 1)
+{
+   $blank = 'blanc/trimmer.docx';
+}
+if($request->type === 2)
+{
+    $blank = 'blanc/snow.docx';
+}
+
+$templateProcessor = new TemplateProcessor($blank);
+
+        return view('gaz_out');
+    }
+
+
+    public function   gaz_out()
+    {
+
+        return view('gaz_out');
+    }
+
+    public function   fuel_add(Request $request)
+    {
+
+if($request->type === 'D')
+{
+
+    $query = Diesel::query()->latest()->first();
+    $balans = $query->balans;
+
+
+    $data = new Diesel();
+    $data->coming = $request->count;
+    $data->date = $request->date;
+    $data->balans = $balans + $request->count;
+   // $data->
+   $data->save();
+
+      return response('Данные загружены' , 200);
+}
+if($request->type === 'B')
+{
+
+    $query = Gaz::query()->latest()->first();
+    $balans = $query->balans;
+
+    $data = new Gaz();
+    $data->coming = $request->count;
+    $data->date = $request->date;
+    $data->balans = $balans + $request->count;
+    //$data->
+    $data->save();
+
+      return response('Данные загружены' , 200);
+}
+      
+    }
+
 
 }

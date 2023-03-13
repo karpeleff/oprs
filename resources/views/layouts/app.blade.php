@@ -29,6 +29,7 @@
     <!-- Vendors styles-->
     <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
     <link rel="stylesheet" href="css/vendors/simplebar.css">
+  
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
     <!-- We use those styles to show code examples, you should remove them in your application.-->
@@ -39,6 +40,7 @@
   
   </head>
   <body>
+
     <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
       <div class="sidebar-brand d-none d-md-flex">
         <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
@@ -54,10 +56,10 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
             </svg> Dashboard</a></li>
         <li class="nav-title">Theme</li>
-        <li class="nav-item"><a class="nav-link" href="colors.html">
+        <li class="nav-item"><a class="nav-link" href="{{ route('notes_view') }}">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
-            </svg> Colors</a></li>
+            </svg>Заметки</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('des') }}">
             <svg class="nav-icon">
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
@@ -68,10 +70,12 @@
               <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
             </svg> Base</a>
           <ul class="nav-group-items">
-            <li class="nav-item"><a class="nav-link" href="base/accordion.html"><span class="nav-icon"></span> Accordion</a></li>
-            <li class="nav-item"><a class="nav-link" href="base/breadcrumb.html"><span class="nav-icon"></span> Breadcrumb</a></li>
-            <li class="nav-item"><a class="nav-link" href="base/cards.html"><span class="nav-icon"></span> Cards</a></li>
-           
+            <li class="nav-item"><a class="nav-link" href="{{ route('svod_gsm') }}"><span class="nav-icon"></span>Сводный отчет ГСМ</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('gaz_in') }}"><span class="nav-icon"></span>Приход топлива</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('gaz_out') }}"><span class="nav-icon"></span>Списание Бензин</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('sprav_mons_view') }}"><span class="nav-icon"></span>Справка за месяц</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('mons_plan_view') }}"><span class="nav-icon"></span>План работ</a></li>
+
           </ul>
         </li>
        
@@ -192,6 +196,7 @@
     <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
     <script src="vendors/simplebar/js/simplebar.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/my_little.js') }}" defer></script>
 
     <script>
     </script>
