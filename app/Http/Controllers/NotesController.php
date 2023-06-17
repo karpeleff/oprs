@@ -11,11 +11,9 @@ class NotesController extends Controller
     {
         $note = Note::create([
             'text' => $request->text,
-        ]); 
-
+        ]);
         return response('Данные добавлены в базу успешно' , 200);
     }
-
 
     public function get_notes()
     {

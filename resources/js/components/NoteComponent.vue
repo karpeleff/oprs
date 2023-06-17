@@ -2,54 +2,49 @@
     <div class="container">
         <div class="row justify-content-center">
             <div>
-               
-              
-              
-              
+
+
+
+
                   <div mt-5></div>
                   <label>Запись</label>
                     <div mt-5></div>
                   <div class="input-group m-3">
-                  
+
                     <input type="text" class="form-control" v-model="text" placeholder="" >
                   </div>
-                
+
                   <div mt-5></div>
-               
-            
+
+
                 <br>
                 <button v-on:click="send_data" type="button" class="btn btn-success" >Сохранить </button>
-              
+
             </div>
-            <div class="alert alert-success  mt-4 " role="alert"   v-for="item in notes"  >
-  {{ item.text }}
-</div>
+            <List></List>
 
         </div>
     </div>
 </template>
 
 <script>
-
-
-///////
-
-
-
+import List from './List.vue'
 
     export default {
         data: function () {
             return {
                  text: '',
-                 notes: null       
+                 notes: null
                    }
         },
+
+components: {
+    List
+},
         methods:{
             send_data: function (){
                 axios.post('add_note', {
                     text:  this.text,
-                   
-                 
                 })
                     .then(function (response) {
                         //console.log(response);
@@ -68,14 +63,14 @@
                            .get('/notes')
                            .then(response => (this.notes = response.data))
                 },
-                      
+
 
                  },
 
         mounted() {
             this.get_data();
           },
-        
+
     }
 
 </script>
