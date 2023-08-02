@@ -3,9 +3,6 @@
         <div class="row justify-content-center">
             <div>
 
-
-
-
                   <div mt-5></div>
                   <label>Запись</label>
                     <div mt-5></div>
@@ -15,13 +12,16 @@
                   </div>
 
                   <div mt-5></div>
-
-
                 <br>
                 <button v-on:click="send_data" type="button" class="btn btn-success" >Сохранить </button>
 
             </div>
-            <List></List>
+            <List
+                v-for="text in notes"
+                :text="text.text"
+                :key="text.id"
+                v-bind:note_data="text"
+            />
 
         </div>
     </div>
@@ -34,7 +34,7 @@ import List from './List.vue'
         data: function () {
             return {
                  text: '',
-                 notes: null
+                 notes: [],
                    }
         },
 
@@ -62,6 +62,7 @@ components: {
                         axios
                            .get('/notes')
                            .then(response => (this.notes = response.data))
+
                 },
 
 
@@ -69,6 +70,7 @@ components: {
 
         mounted() {
             this.get_data();
+           // console.log(this.notes);
           },
 
     }
